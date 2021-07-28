@@ -177,3 +177,10 @@ rules_proto_grpc_repos()
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
 rules_proto_dependencies()
 rules_proto_toolchains()
+
+http_archive(
+   name = "com_github_google_flatbuffers",
+   strip_prefix = "flatbuffers-63d51afd1196336a7d1f56a988091ef05deb1c62",
+   urls = ["https://github.com/google/flatbuffers/archive/63d51afd1196336a7d1f56a988091ef05deb1c62.tar.gz"],
+   sha256 = "3f469032571d324eabea88d7014c05fec8565a5877dbe49b2a52d8d1a0f18e63",
+)
