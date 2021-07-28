@@ -25,6 +25,10 @@ http_archive(
 
 load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
 
+# This sets up some common toolchains for building targets. For more details, please see
+# https://bazelbuild.github.io/rules_foreign_cc/0.4.0/flatten.html#rules_foreign_cc_dependencies
+rules_foreign_cc_dependencies()
+
 git_repository(
     name = "com_github_nelhage_rules_boost",
     commit = "1e3a69bf2d5cd10c34b74f066054cd335d033d71",
@@ -38,10 +42,6 @@ boost_deps()
 #########
 # Golang
 #########
-
-# This sets up some common toolchains for building targets. For more details, please see
-# https://bazelbuild.github.io/rules_foreign_cc/0.4.0/flatten.html#rules_foreign_cc_dependencies
-rules_foreign_cc_dependencies()
 
 http_archive(
     name = "io_bazel_rules_go",
@@ -99,6 +99,7 @@ http_archive(
 )
 
 load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories")
+node_repositories()
 
 #########
 # Docker
@@ -135,3 +136,44 @@ http_archive(
     strip_prefix = "benchmark-bf585a2789e30585b4e3ce6baf11ef2750b54677",
     sha256 = "2a778d821997df7d8646c9c59b8edb9a573a6e04c534c01892a40aa524a7b68c",
 )
+
+http_archive(
+    name = "com_github_jupp0r_prometheus_cpp",
+    strip_prefix = "prometheus-cpp-952c6bcdfec081f3259ebbaba8a03459ff57e1ba",
+    urls = ["https://github.com/jupp0r/prometheus-cpp/archive/952c6bcdfec081f3259ebbaba8a03459ff57e1ba.zip"],
+    sha256 = "8a01268ac48b346c043d53df50808ae7485c7d384662aec170b863d8218c7934",
+)
+
+load("@com_github_jupp0r_prometheus_cpp//bazel:repositories.bzl", "prometheus_cpp_repositories")
+
+prometheus_cpp_repositories()
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    urls = [
+        "https://github.com/grpc/grpc/archive/58602e20a3f3e48f24a4114c757099b25b947f7b.tar.gz",
+    ],
+    strip_prefix = "grpc-58602e20a3f3e48f24a4114c757099b25b947f7b",
+    sha256 = "1b9b77f894d4d2cca73f534f4bee574588e5ed7f31794715073e4957fb790cee",
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+grpc_extra_deps()
+
+http_archive(
+    name = "rules_proto_grpc",
+    sha256 = "7954abbb6898830cd10ac9714fbcacf092299fda00ed2baf781172f545120419",
+    strip_prefix = "rules_proto_grpc-3.1.1",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/3.1.1.tar.gz"],
+)
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+rules_proto_grpc_toolchains()
+rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
