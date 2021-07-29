@@ -184,3 +184,10 @@ http_archive(
    urls = ["https://github.com/google/flatbuffers/archive/63d51afd1196336a7d1f56a988091ef05deb1c62.tar.gz"],
    sha256 = "3f469032571d324eabea88d7014c05fec8565a5877dbe49b2a52d8d1a0f18e63",
 )
+
+http_archive(
+   name = "com_github_apache_incubator-brpc",
+   strip_prefix = "incubator-brpc-fd38def94f870baa90bf9b211da577bcddcfd822",
+   urls = ["https://github.com/apache/incubator-brpc/archive/fd38def94f870baa90bf9b211da577bcddcfd822.tar.gz"],
+   sha256 = "5ce97506f8522685046e04066d67f45717db7b67a0263f0203c87a0d48210a87",
+)
