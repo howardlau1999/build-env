@@ -191,3 +191,26 @@ http_archive(
    urls = ["https://github.com/apache/incubator-brpc/archive/fd38def94f870baa90bf9b211da577bcddcfd822.tar.gz"],
    sha256 = "5ce97506f8522685046e04066d67f45717db7b67a0263f0203c87a0d48210a87",
 )
+
+http_archive(
+    name = "com_gitlab_libeigen_eigen",
+    sha256 = "0215c6593c4ee9f1f7f28238c4e8995584ebf3b556e9dbf933d84feb98d5b9ef",
+    strip_prefix = "eigen-3.3.8",
+    urls = [
+        "https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.tar.bz2",
+    ],
+    build_file_content =
+"""
+cc_library(
+    name = 'eigen',
+    srcs = glob(['Eigen/**/src/**/*.h', 'unsupported/Eigen/**/src/**/*.h']),
+    includes = ['.', 'unsupported'],
+    hdrs = glob([
+        'Eigen/*',
+        'unsupported/Eigen/*',
+        'unsupported/Eigen/CXX11/*',
+    ]),
+    visibility = ['//visibility:public'],
+)
+"""
+)
