@@ -31,7 +31,7 @@ rules_foreign_cc_dependencies()
 
 git_repository(
     name = "com_github_nelhage_rules_boost",
-    commit = "1e3a69bf2d5cd10c34b74f066054cd335d033d71",
+    commit = "fb9f3c9a6011f966200027843d894923ebc9cd0b",
     remote = "https://github.com/nelhage/rules_boost",
     shallow_since = "1591047380 -0700",
 )
@@ -132,9 +132,9 @@ http_archive(
 
 http_archive(
     name = "com_github_google_benchmark",
-    urls = ["https://github.com/google/benchmark/archive/bf585a2789e30585b4e3ce6baf11ef2750b54677.zip"],
-    strip_prefix = "benchmark-bf585a2789e30585b4e3ce6baf11ef2750b54677",
-    sha256 = "2a778d821997df7d8646c9c59b8edb9a573a6e04c534c01892a40aa524a7b68c",
+    urls = ["https://github.com/google/benchmark/archive/dc1a97174d5b84b1ce6720f1c98f85e6031b4723.zip"],
+    strip_prefix = "benchmark-dc1a97174d5b84b1ce6720f1c98f85e6031b4723",
+    sha256 = "16b0919e68a53d9e3c0c32295afdbeb2ef36cf7291c43bda5035573754bcb292",
 )
 
 http_archive(
@@ -178,6 +178,26 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 rules_proto_toolchains()
 
+git_repository(
+    name = "com_github_gflags_gflags",
+    remote = "https://github.com/gflags/gflags.git",
+    tag = "v2.2.2",
+)
+
+http_archive(
+    name = "com_github_google_glog",
+    sha256 = "21bc744fb7f2fa701ee8db339ded7dce4f975d0d55837a97be7d46e8382dea5a",
+    strip_prefix = "glog-0.5.0",
+    urls = ["https://github.com/google/glog/archive/v0.5.0.zip"],
+)
+
+http_archive(
+    name = "com_github_google_leveldb",
+    build_file = "//:leveldb.BUILD",
+    strip_prefix = "leveldb-a53934a3ae1244679f812d998a4f16f2c7f309a6",
+    url = "https://github.com/google/leveldb/archive/a53934a3ae1244679f812d998a4f16f2c7f309a6.tar.gz"
+)
+
 http_archive(
    name = "com_github_google_flatbuffers",
    strip_prefix = "flatbuffers-63d51afd1196336a7d1f56a988091ef05deb1c62",
@@ -185,11 +205,18 @@ http_archive(
    sha256 = "3f469032571d324eabea88d7014c05fec8565a5877dbe49b2a52d8d1a0f18e63",
 )
 
+
+git_repository(
+    name = "com_github_sogou_workflow",
+    remote = "https://github.com/sogou/workflow",
+    commit = "93319624aa08f83a10f3eb791827156b13e70a4f",
+    shallow_since = "1629456047 +0800",
+)
+
 http_archive(
-   name = "com_github_apache_incubator-brpc",
-   strip_prefix = "incubator-brpc-fd38def94f870baa90bf9b211da577bcddcfd822",
-   urls = ["https://github.com/apache/incubator-brpc/archive/fd38def94f870baa90bf9b211da577bcddcfd822.tar.gz"],
-   sha256 = "5ce97506f8522685046e04066d67f45717db7b67a0263f0203c87a0d48210a87",
+    name = "com_github_baidu_braft",
+    strip_prefix = "braft-1.1.2",
+    urls = ["https://github.com/baidu/braft/archive/refs/tags/v1.1.2.tar.gz"],
 )
 
 http_archive(
