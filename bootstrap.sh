@@ -31,7 +31,7 @@ echo "Installing Bazel..."
 
 curl -fsSL -o /usr/local/bin/bazelisk https://github.com/bazelbuild/bazelisk/releases/download/v1.10.1/bazelisk-linux-amd64
 chmod +x /usr/local/bin/bazelisk
-sudo ln -s /usr/local/bin/bazelisk /usr/local/bin/bazel
+ln -s /usr/local/bin/bazelisk /usr/local/bin/bazel
 
 curl -fsSL -o /usr/local/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/4.0.1/buildifier-linux-amd64
 chmod +x /usr/local/bin/buildifier
