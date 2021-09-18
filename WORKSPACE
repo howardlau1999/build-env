@@ -205,7 +205,6 @@ http_archive(
    sha256 = "3f469032571d324eabea88d7014c05fec8565a5877dbe49b2a52d8d1a0f18e63",
 )
 
-
 git_repository(
     name = "com_github_sogou_workflow",
     remote = "https://github.com/sogou/workflow",
@@ -217,6 +216,24 @@ http_archive(
     name = "com_github_baidu_braft",
     strip_prefix = "braft-1.1.2",
     urls = ["https://github.com/baidu/braft/archive/refs/tags/v1.1.2.tar.gz"],
+)
+
+http_archive(
+    name = "com_github_fmtlib_fmt",
+    urls = ["https://github.com/fmtlib/fmt/archive/refs/tags/8.0.1.tar.gz"],
+    strip_prefix = "fmt-8.0.1",
+    build_file_content = 
+"""
+cc_library(
+    name = 'fmt',
+    hdrs = glob(['include/**']),
+    srcs = [
+        'src/format.cc',
+    ],
+    includes = ['include'],
+    visibility = ['//visibility:public'],
+)
+"""
 )
 
 http_archive(
