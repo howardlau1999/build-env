@@ -31,7 +31,7 @@ rules_foreign_cc_dependencies()
 
 git_repository(
     name = "com_github_nelhage_rules_boost",
-    commit = "fb9f3c9a6011f966200027843d894923ebc9cd0b",
+    commit = "a7851e47957fac82c05b20ffd5b4fad592797ce6",
     remote = "https://github.com/nelhage/rules_boost",
     shallow_since = "1591047380 -0700",
 )
@@ -237,6 +237,16 @@ cc_library(
 )
 
 http_archive(
+    name = "com_github_facebook_folly",
+    urls = ["https://github.com/facebook/folly/releases/download/v2021.09.20.00/folly-v2021.09.20.00.tar.gz"],
+    strip_prefix = "folly-v2021.09.20.00",
+    build_file_content = 
+"""
+
+"""
+)
+
+http_archive(
     name = "com_gitlab_libeigen_eigen",
     sha256 = "0215c6593c4ee9f1f7f28238c4e8995584ebf3b556e9dbf933d84feb98d5b9ef",
     strip_prefix = "eigen-3.3.8",
@@ -273,3 +283,19 @@ http_archive(
 )
 load("@pybind11_bazel//:python_configure.bzl", "python_configure")
 python_configure(name = "local_config_python")
+
+# git_repository(
+#     name = "boringssl",
+#     commit = "fc44652a42b396e1645d5e72aba053349992136a",
+#     remote = "https://github.com/google/boringssl",
+# )
+
+# Group the sources of the library so that rules in rules_foreign_cc have access to it
+# all_content = """filegroup(name = "all", srcs = glob(["**"]), visibility = ["//visibility:public"])"""
+
+# http_archive(
+#     name = "openssl",
+#     build_file_content = all_content,
+#     strip_prefix = "openssl-1.1.1l",
+#     urls = ["https://www.openssl.org/source/openssl-1.1.1l.tar.gz"],
+# )
